@@ -1,23 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Blog</title>
-</head>
-<body>
-    <h1>Publicaciones del Blog</h1>
-    {% for post in posts %}
-        <div>
-            <h2>{{ post.title }}</h2>
-            <p>{{ post.content }}</p>
-            <p>Publicado por: {{ post.author.username }}</p>
-        </div>
-    {% endfor %}
-    {% if user.is_authenticated %}
-        <a href="{% url 'create_post' %}">Crear nueva publicación</a>
-        <a href="{% url 'logout' %}">Cerrer sesion</a>
-    {% else %}
-        <a href="{% url 'register' %}">Sign up</a>
-        <a href="{% url 'login' %}">Login</a>
-    {% endif %}
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+    <main class="container">
+        <h1 class="display-1 text-center">Publicaciones del Blog</h1>
+        {% for post in posts %}
+                <div class="card mb-3 " style="width: 50rem; margin: auto auto;">
+                    <div class="card-header text-center"><h2>{{ post.title }}</h2></div>
+                    <div class="card-body text-secondary">
+                      <p class="card-text text-center">{{ post.content }}</p>
+                    </div>
+                    <p class="card-header card-title">Publicado por: {{ post.author.username }}</p>
+                </div>
+        {% endfor %}
+
+        {% if user.is_authenticated %}
+            <div class="text-center">    
+                <a href="{% url 'my_posts' %}" class="btn btn-dark">My posts</a>
+                <a href="{% url 'create_post' %}" class='btn btn-dark'>New post</a>
+                <a href="{% url 'logout' %}" class="btn btn-dark">Logout</a>
+            </div>
+        {% else %}
+            <div class="text-center">
+                <a href="{% url 'register' %}" class="btn btn-secondary">Sign up</a>
+                <a href="{% url 'login' %}" class="btn btn-dark">Login</a>
+            </div>
+        {% endif %}
+    </main>    
+{% endblock %}
+
+  

@@ -1,14 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Crear publicación</title>
-</head>
-<body>
-    <h1>Crear nueva publicación</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Crear</button>
-    </form>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 mt-5">
+            <form method="post" class='card card-body'>
+                <h1 class=" text-center">Create Post</h1>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-dark">Save</button>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+    
